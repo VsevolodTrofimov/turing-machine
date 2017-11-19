@@ -42,22 +42,26 @@ input {
 .state {
   --tape-cell-size: var(--space-l);
   --head-size: var(--space-xs);
-
-  position: relative;
 }
 
-.state__tape {
+.state__tape-wrap {
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-
-  width: 100%;
-  height: var(--tape-cell-size);
+  flex-direction: column;
+  align-items: center;
 
   margin-top: var(--space-s);
 
   border-top: var(--border-m);
   border-bottom: var(--border-m);
+}
+
+.state__tape {
+  position: relative;
+  
+  display: flex;
+  flex-direction: row;
+
+  height: var(--tape-cell-size);
 }
 
 .state__tape__cell {
@@ -85,7 +89,7 @@ input {
 .state__head {
   position: absolute;
   bottom: 0;
-  left: calc(50% - var(--head-size)/1.7);
+  left: calc(var(--tape-cell-size)/2 - var(--head-size)/1.7);
 
   height: 0px;
   width: 0px;

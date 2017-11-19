@@ -35,7 +35,7 @@ const parse = ( function() {
   
   const parseState = str => {
     const state = {
-      current: '0',
+      name: '0',
       tape: '',
       head: 0
     }
@@ -49,7 +49,7 @@ const parse = ( function() {
       
       } else if(str[i] === 'q' && str[i + 1] === '(') { 
         const endIdx = str.indexOf(')', i)
-        state.current = str.substring(i + 2, endIdx)
+        state.name = str.substring(i + 2, endIdx)
         i = endIdx
         state.head = state.tape.length
 
