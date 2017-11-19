@@ -1,0 +1,108 @@
+/* vars */
+:root {
+  --space-xs: 10px;
+  --space-s: 15px;
+  --space-m: 20px;
+  --space-l: 40px;
+
+  --color-grey: #eee;
+  --color-grey-dark: #666;
+
+  --color-accent: blue;
+
+  --border-m:  1px solid var(--color-grey-dark);
+}
+
+/* general */
+body > * + * {
+  margin-top: var(--space-l);
+}
+
+body, input, button, textarea {
+  font-size: var(--space-m);
+  font-family: 'Roboto', Arial, sans-serif;
+}
+
+input, textarea {
+  border: var(--border-m);
+}
+
+input {
+  vertical-align: middle;
+}
+
+/* controls */
+.controls {
+  padding: var(--space-s);
+  background: var(--color-grey);
+}
+
+
+/* tape */
+.state {
+  --tape-cell-size: var(--space-l);
+  --head-size: var(--space-xs);
+
+  position: relative;
+}
+
+.state__tape {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+
+  width: 100%;
+  height: var(--tape-cell-size);
+
+  margin-top: var(--space-s);
+
+  border-top: var(--border-m);
+  border-bottom: var(--border-m);
+}
+
+.state__tape__cell {
+  width: var(--tape-cell-size);
+  height: var(--tape-cell-size);
+
+  border-left: var(--border-m);
+
+  line-height: var(--tape-cell-size);
+  text-align: center;
+  vertical-align: middle;
+
+  box-sizing: border-box;
+}
+
+.state__tape__cell:last-child {
+  border-right: var(--border-m);
+}
+
+.state__tape__cell--active {
+  color: var(--color-accent);
+  font-weight: bold;
+}
+
+.state__head {
+  position: absolute;
+  bottom: 0;
+  left: calc(50% - var(--head-size)/1.7);
+
+  height: 0px;
+  width: 0px;
+
+  border-bottom: var(--head-size) solid var(--color-grey-dark);
+  border-left:  calc(var(--head-size)/1.7) solid transparent;
+  border-right: calc(var(--head-size)/1.7) solid transparent;
+}
+
+/* editor */
+.editor__config {
+  width: 100%;
+  min-height: calc(var(--space-l) * 5);
+}
+
+/* tooltip */
+.tooltip {
+  color: var(--color-grey-dark);
+  font-size: var(--space-s);
+}
