@@ -23,7 +23,7 @@ const ui = ( function() {
   // flags
   let forceStop = false
   let keep = false
-  let currentSpeed = 10
+  let currentSpeed = 20
   let machine = new TuringMachine()
 
   const displayState = state => {
@@ -44,8 +44,11 @@ const ui = ( function() {
   }
 
   const run = () => {
-    const keep = ! machine.tick()
-    if(!forceStop && keep) machine.tick()
+    if(!forceStop && keep) {
+      keep = machine.tick()
+      setTimeout(run, LONG_TICK / currentSpeed)
+    }
+
   }
 
   const reset = () => {

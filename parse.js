@@ -79,7 +79,7 @@ const parse = ( function() {
 
       const toValueIdx = to.indexOf(')') + 1
       const next = {
-        state: to.substring(2, toValueIdx - 1),
+        name: to.substring(2, toValueIdx - 1),
         value: to.substring(toValueIdx),
         direction
       }
