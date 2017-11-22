@@ -1,0 +1,30 @@
+/* controls */
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+
+  padding: var(--space-m);
+  background: var(--color-accent);
+}
+
+.controls__main {
+  display: flex;
+  flex-direction: row;
+}
+
+.controls__main > * + * {
+  margin-left: var(--space-s);
+}
+
+.controls__display {
+  background: var(--color-white);
+  display: flex;
+  padding: 0 var(--space-s);
+  flex-direction: row;
+  align-items: center;
+}
+
+.controls__speed {
+  margin-left: var(--space-s);
+}

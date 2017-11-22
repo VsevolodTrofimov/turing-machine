@@ -1,23 +1,28 @@
 <html>
   <head>
     <link rel='stylesheet' href='styles.css'>
+    <link rel='stylesheet' href='controls.css'>
+    <link rel='stylesheet' href='state.css'>
+    <link rel='stylesheet' href='editor.css'>
+    <link rel='stylesheet' href='input.css'>
     <meta charset='utf-8'>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
   </head>
   <body>
     <div class='controls'>
       <div class='controls__main'>
-        <button class='controls__run'>   run   </button>
-        <button class='controls__stop'>  stop  </button>
+        <button class='btn controls__run'>   run   </button>
+        <button class='btn controls__stop'>  stop  </button>
 
-        <!-- <button class='controls__back'>  <     </button> -->
-        <!-- <button class='controls__next'>  >     </button> -->
+        <!-- <button class='btn controls__back'>  <     </button> -->
+        <!-- <button class='btn controls__next'>  >     </button> -->
 
-        <button class='controls__reset'> reset </button>
-      </div>
-      <div class='controls__speed'>
-        <label> Speed </label>
-        <input type='range' class='controls__speed' min='1' max='100'> 
+        <button class='btn controls__reset'> reset </button>
+        <div class='controls__display'>
+          <label> speed </label>
+          <input type='range' class='input--range controls__speed'
+                 min='1' max='100'> 
+        </div>
       </div>
     </div>
 
@@ -30,11 +35,11 @@
       
       <div class='state__tape-wrap'>
         <div class='state__tape'>
-          <div class='state__head'></div>
+          <div class='state__head state__head--inactive'></div>
         </div>
       </div>
     </div>
-
+<!-- q(1)0-q(1)1 -->
 
     <div class='editor'>
       <strong> Изначальное состояние </strong>
@@ -51,7 +56,7 @@
 
       <strong> Алгоритм </strong> <br>
       <textarea class='editor__config'></textarea>
-      <div class='tooltip'>
+      <div class='tooltip editor__config-tooltip'>
         q(1)2 - q(3)4 - R &mdash; если машина в состоянии 1 и значение в ячейке 2, <br>
         то записать в ячейку 4 перевести машину в состояние 3 и сдвинуть каретку направо
 

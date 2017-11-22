@@ -1,0 +1,15 @@
+/* editor */
+.editor {
+  padding: var(--space-m);
+}
+
+.editor__config {
+  width: 100%;
+  min-height: calc(var(--space-l) * 5);
+
+  margin-top: var(--space-xs);
+}
+
+.editor__config-tooltip {
+  margin-top: var(--space-s);
+}

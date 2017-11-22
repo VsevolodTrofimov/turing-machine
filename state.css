@@ -1,0 +1,60 @@
+/* tape */
+.state {
+  --tape-cell-size: var(--space-l);
+  --head-size: 10px;
+
+  padding: var(--space-m);
+  background: var(--color-grey);
+}
+
+.state__tape-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  margin-top: var(--space-s);
+  background: var(--color-white);
+}
+
+.state__tape {
+  position: relative;
+  
+  display: flex;
+  flex-direction: row;
+
+  height: var(--tape-cell-size);
+}
+
+.state__tape__cell {
+  width: var(--tape-cell-size);
+  height: var(--tape-cell-size);
+
+  line-height: var(--tape-cell-size);
+  text-align: center;
+  vertical-align: middle;
+
+  box-sizing: border-box;
+}
+
+.state__tape__cell--active {
+  color: var(--color-accent);
+  font-weight: bold;
+}
+
+.state__head {
+  position: absolute;
+  bottom: var(--head-size);
+  left: var(--head-size);
+
+  background: var(--color-accent);
+  opacity: 0.5;
+  
+  height: calc(var(--tape-cell-size) - var(--head-size)* 2);
+  width: calc(var(--tape-cell-size) - var(--head-size) * 2);
+  transition: 0.15s ease;
+}
+
+.state__head--inactive {
+  bottom: calc(-1 * var(--head-size));
+  background: var(--color-error);
+}

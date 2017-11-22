@@ -23,7 +23,7 @@ const ui = ( function() {
   // flags
   let forceStop = false
   let keep = false
-  let currentSpeed = 20
+  let currentSpeed = 30
   let machine = new TuringMachine()
 
   const displayState = state => {
@@ -32,7 +32,7 @@ const ui = ( function() {
 
     state.tape.split('').forEach((char, idx) => {
       let $cell = $.state.tape.children[idx + 1]
-      
+
       if( ! $cell) {
         $cell = document.createElement('div')
         $cell.classList.add('state__tape__cell')
@@ -44,11 +44,13 @@ const ui = ( function() {
   }
 
   const run = () => {
+    $.state.head.classList.add('state__head--inactive');
+
     if(!forceStop && keep) {
+      $.state.head.classList.remove('state__head--inactive');
       keep = machine.tick()
       setTimeout(run, LONG_TICK / currentSpeed)
     }
-
   }
 
   const reset = () => {
@@ -71,9 +73,13 @@ const ui = ( function() {
   $.controls.run.addEventListener('click', e => {
     if( ! forceStop && ! keep) reset()
     
+    if( forceStop || ! keep) { 
+      setTimeout(run, LONG_TICK / currentSpeed)
+      $.state.head.classList.remove('state__head--inactive');
+    }
+    
     forceStop = false
     keep = true
-    run()
   })
 
   $.controls.reset.addEventListener('click', reset)

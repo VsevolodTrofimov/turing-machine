@@ -1,21 +1,24 @@
 /* vars */
 :root {
+  --space-xxs: 5px;
   --space-xs: 10px;
   --space-s: 15px;
   --space-m: 20px;
   --space-l: 40px;
 
-  --color-grey: #eee;
-  --color-grey-dark: #666;
+  --color-white: #ffffff;
+  --color-grey: #f1f1f1;
+  --color-grey-dark: #666666;
 
-  --color-accent: blue;
+  --color-accent: #3C91E6;
+  --color-error: #D62246;
 
   --border-m:  1px solid var(--color-grey-dark);
 }
 
-/* general */
-body > * + * {
-  margin-top: var(--space-l);
+body, html {
+  margin: 0;
+  padding: 0;
 }
 
 body, input, button, textarea {
@@ -23,86 +26,15 @@ body, input, button, textarea {
   font-family: 'Roboto', Arial, sans-serif;
 }
 
-input, textarea {
-  border: var(--border-m);
+/* button */
+.btn {
+  border: 0;
+  background: var(--color-white);
+  padding: var(--space-xs) var(--space-m);
 }
 
-input {
-  vertical-align: middle;
-}
-
-/* controls */
-.controls {
-  padding: var(--space-s);
+.btn:hover {
   background: var(--color-grey);
-}
-
-
-/* tape */
-.state {
-  --tape-cell-size: var(--space-l);
-  --head-size: var(--space-xs);
-}
-
-.state__tape-wrap {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-
-  margin-top: var(--space-s);
-
-  border-top: var(--border-m);
-  border-bottom: var(--border-m);
-}
-
-.state__tape {
-  position: relative;
-  
-  display: flex;
-  flex-direction: row;
-
-  height: var(--tape-cell-size);
-}
-
-.state__tape__cell {
-  width: var(--tape-cell-size);
-  height: var(--tape-cell-size);
-
-  border-left: var(--border-m);
-
-  line-height: var(--tape-cell-size);
-  text-align: center;
-  vertical-align: middle;
-
-  box-sizing: border-box;
-}
-
-.state__tape__cell:last-child {
-  border-right: var(--border-m);
-}
-
-.state__tape__cell--active {
-  color: var(--color-accent);
-  font-weight: bold;
-}
-
-.state__head {
-  position: absolute;
-  bottom: 0;
-  left: calc(var(--tape-cell-size)/2 - var(--head-size)/1.7);
-
-  height: 0px;
-  width: 0px;
-
-  border-bottom: var(--head-size) solid var(--color-grey-dark);
-  border-left:  calc(var(--head-size)/1.7) solid transparent;
-  border-right: calc(var(--head-size)/1.7) solid transparent;
-}
-
-/* editor */
-.editor__config {
-  width: 100%;
-  min-height: calc(var(--space-l) * 5);
 }
 
 /* tooltip */

@@ -1,0 +1,33 @@
+input {
+  vertical-align: middle;
+}
+
+input[type=range] {
+  -webkit-appearance: none;
+}
+
+input[type=range]:focus {
+  outline: none;
+}
+
+input[type=range]::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 4px;
+  cursor: pointer;
+  background: #ddd;
+  border: 0;
+  outline: 0;
+}
+
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 18px;
+  width: 4px;
+  background: var(--color-accent);
+  margin-top: -8px;
+  transition: 0.15s ease;
+}
+
+input[type=range]:active::-webkit-slider-thumb {
+  transform: scale(1.5);
+}
