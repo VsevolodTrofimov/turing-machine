@@ -88,4 +88,8 @@ const ui = ( function() {
     forceStop = true
   })
 
+  $.controls.speed.value = currentSpeed
+  $.controls.speed.addEventListener('mousemove', e => {
+    currentSpeed = $.controls.speed.value
+  })
 }() )
