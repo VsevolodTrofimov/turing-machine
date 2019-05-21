@@ -1,14 +1,14 @@
-const TuringMachine = ( function() {
+const TuringMachine = (function () {
   const replaceByIdx = (str, idx, newChar) => str.substring(0, idx) + newChar + str.substring(idx + 1)
-  
+
   const machineMoves = {
-    'S': () => {},
+    'S': () => { },
     'R': state => {
       state.head++
-      if(state.head === state.tape.length) state.tape += '0'
+      if (state.head === state.tape.length) state.tape += '0'
     },
     'L': state => {
-      if(state.head === 0) state.tape = '0' + state.tape
+      if (state.head === 0) state.tape = '0' + state.tape
       else state.head--
     }
   }
@@ -18,8 +18,7 @@ const TuringMachine = ( function() {
       this.state = state
 
       this.transitions = transitions
-      this.tick = this.tick.bind(this)
-    
+
       this.on = {
         update: []
       }
@@ -27,10 +26,10 @@ const TuringMachine = ( function() {
       setTimeout(() => this.update(), 0)
     }
 
-    tick() {
+    tick = () => {
       const current = `q(${this.state.name})${this.state.tape[this.state.head]}`
       const next = this.transitions[current]
-      if(typeof next === 'undefined') return false
+      if (typeof next === 'undefined') return false
 
       this.state.name = next.name
       this.state.tape = replaceByIdx(this.state.tape, this.state.head, next.value)
@@ -52,4 +51,4 @@ const TuringMachine = ( function() {
   }
 
   return TuringMachine
-}() )
+}())

@@ -1,14 +1,14 @@
-const parse = ( function() {
+const parse = (function () {
   const unfoldExpression = (str, expressionStart) => {
     let tape = ''
-    
-    for(i = expressionStart; i < str.length; i++) {
-      if(str[i] === '[') {
+
+    for (i = expressionStart; i < str.length; i++) {
+      if (str[i] === '[') {
         const unfolded = unfoldExpression(str, i + 1)
         tape += unfolded.tape
         i = unfolded.cursor
 
-      } else if(str[i] === ']') {
+      } else if (str[i] === ']') {
         const endIdx = str.indexOf(')', i)
         const repeats = parseInt(str.substring(i + 2, endIdx), 10)
 
@@ -16,7 +16,7 @@ const parse = ( function() {
         i = endIdx
         break
 
-      } else if(str[i] === '(') {
+      } else if (str[i] === '(') {
         const endIdx = str.indexOf(')', i)
         const repeats = parseInt(str.substring(i + 1, endIdx), 10)
         const lastChar = tape[tape.length - 1]
@@ -24,7 +24,7 @@ const parse = ( function() {
         tape += lastChar.repeat(repeats - 1)
         i = endIdx
 
-      } else tape += str[i] 
+      } else tape += str[i]
     }
 
     return {
@@ -32,7 +32,7 @@ const parse = ( function() {
       cursor: i
     }
   }
-  
+
   const parseState = str => {
     const state = {
       name: '0',
@@ -41,27 +41,27 @@ const parse = ( function() {
     }
     let i = 0
 
-    for(i; i < str.length; i++) {
-      if(str[i] === '[') {
+    for (i; i < str.length; i++) {
+      if (str[i] === '[') {
         const unfolded = unfoldExpression(str, i + 1)
         state.tape += unfolded.tape
         i = unfolded.cursor
-      
-      } else if(str[i] === 'q' && str[i + 1] === '(') { 
+
+      } else if (str[i] === 'q' && str[i + 1] === '(') {
         const endIdx = str.indexOf(')', i)
         state.name = str.substring(i + 2, endIdx)
         i = endIdx
         state.head = state.tape.length
 
-      } else if(str[i] === '(') {
+      } else if (str[i] === '(') {
         const endIdx = str.indexOf(')', i)
         const repeats = parseInt(str.substring(i + 1, endIdx), 10)
         const lastChar = state.tape[state.tape.length - 1]
 
         state.tape += lastChar.repeat(repeats - 1)
         i = endIdx
-     
-      } else state.tape += str[i] 
+
+      } else state.tape += str[i]
     }
 
     return state
@@ -72,9 +72,10 @@ const parse = ( function() {
     const expressions = str.split('\n')
 
     expressions.forEach(expression => {
+      // remove comments
       expression = expression.replace(/\/\/.*$/g, '')
-      if(!expression) return
-      
+      if (!expression) return
+
       const [from, to, direction] = expression.split('-').map(s => s.trim())
 
       const toValueIdx = to.indexOf(')') + 1
@@ -93,4 +94,4 @@ const parse = ( function() {
     state: parseState,
     config: parseConfig
   }
-}() )
+}())

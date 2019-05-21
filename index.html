@@ -1,0 +1,85 @@
+<html>
+
+<head>
+  <link rel='stylesheet' href='styles.css'>
+  <link rel='stylesheet' href='controls.css'>
+  <link rel='stylesheet' href='state.css'>
+  <link rel='stylesheet' href='editor.css'>
+  <link rel='stylesheet' href='input.css'>
+  <meta charset='utf-8'>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+</head>
+
+<body>
+  <div class='controls'>
+    <div class='controls__main'>
+      <button class='btn controls__run'> run </button>
+      <button class='btn controls__stop'> stop </button>
+
+      <button class='btn controls__reset'> reset </button>
+      <div class='controls__display'>
+        <label> speed </label>
+        <input type='range' class='input--range controls__speed' min='20' max='1000'>
+      </div>
+      <div class='controls__display'>
+        ticks&nbsp;<span class="state__ticks">0</span>
+      </div>
+      <button class='btn controls__save'> save </button>
+    </div>
+  </div>
+
+
+  <div class='state'>
+    <div class='state__identifier'>
+      <strong> Текущее состояние: </strong>
+      q<span class='state__name'> ?? </span>
+    </div>
+
+    <div class='state__tape-wrap'>
+      <div class='state__tape'>
+        <div class='state__head state__head--inactive'></div>
+      </div>
+    </div>
+  </div>
+  <!-- q(1)0-q(1)1 -->
+
+  <div class='editor'>
+    <strong> Изначальное состояние </strong>
+    <input type='text' class='editor__initial-state' placeholder="1[01](5)q(1)111">
+    <div class='tooltip'>
+      01az2 &mdash; задание напрямую <br>
+      q(1) &mdash; q(номер начального состояния),
+      следующий символ &mdash; положение каретки <br>
+      1(5) &mdash; выражение(кол-во повторов) <br>
+      [011] &mdash; [выражение] <br>
+    </div>
+
+    <br>
+
+    <strong> Алгоритм </strong> <br>
+    <textarea class='editor__config'></textarea>
+    <div class='tooltip editor__config-tooltip'>
+      q(1)2 - q(3)4 - R &mdash; если машина в состоянии 1 и значение в ячейке 2, <br>
+      то записать в ячейку 4 перевести машину в состояние 3 и сдвинуть каретку направо
+
+      <br>
+      <br>
+
+      q(текущее состояние)значение в ячейке - q(следующее состояние)новое значение в ячейке - направление
+
+      <br>
+      <br>
+
+      S &mdash; остаться на месте <br>
+      R &mdash; сдвинуть каретку направо <br>
+      L &mdash; сдвинуть каретку налево <br>
+    </div>
+  </div>
+
+  <script src="lz.js"></script>
+  <script src='machine.js'></script>
+  <script src='parse.js'></script>
+  <script src='ui.js'></script>
+</body>
+
+</html>

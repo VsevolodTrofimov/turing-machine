@@ -5,8 +5,8 @@
 
 .editor__config {
   width: 100%;
+  resize: vertical;
   min-height: calc(var(--space-l) * 5);
-
   margin-top: var(--space-xs);
 }
 
